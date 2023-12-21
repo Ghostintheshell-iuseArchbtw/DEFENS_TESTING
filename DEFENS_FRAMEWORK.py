@@ -37,12 +37,11 @@ class DefenseFramework:
         logging.info("Importing modules...")
         attacker_ip = self._honeypots[0]._ip_address
         attacker_port = self._honeypots[0]._port 
-        if self._is_attacker_detected(attacker_ip): 
-            self._initialize_deadman_switch() 
-            self._deadman_switch.start()  
-        else:
-            self._initialize_ddos_attack(attacker_ip, attacker_port)
-            self._ddos_attack.start()  
+    if self._is_attacker_detected(attacker_ip): 
+           self._initialize_ddos_attack(attacker_ip, attacker_port)
+           self._ddos_attack.start()  
+    else  self._initialize_deadman_switch() 
+           self._deadman_switch.start()  
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
