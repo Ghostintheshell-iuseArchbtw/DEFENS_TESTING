@@ -1,7 +1,8 @@
 # Defense.py Module 
 ## This module contains the classes and functions required to implement the DEFENS Framework.
 
-import logging
+import logging 
+## Logging is handled by the main script ## So it will be removed here 
 import socket
 import threading
 import subprocess
