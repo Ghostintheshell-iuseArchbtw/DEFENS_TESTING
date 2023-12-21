@@ -1,4 +1,4 @@
-## main framework script for the DEFENS_FRAMEWORK
+## main framework and script for the DEFENS_FRAMEWORK
 
 import logging
 from Defense import DdosAttack, DeadmanSwitch, Honeypot , IDSRule, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS
