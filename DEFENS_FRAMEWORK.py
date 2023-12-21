@@ -1,7 +1,7 @@
 ## main framework script for the DEFENS_FRAMEWORK
 
-from Defense import DdosAttack, DeadmanSwitch, Honeypot, IDSRule, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS
 import logging
+from Defense import DdosAttack, DeadmanSwitch, Honeypot , IDSRule, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS
 
 class DefenseFramework:
     def __init__(self):
@@ -26,22 +26,19 @@ class DefenseFramework:
         self._ids_rules.append(ids_rule)
 
     def _initialize_ddos_attack(self, attacker_ip, attacker_port):
-        self._ddos_attack = DdosAttack(self._honeypots[0].ip_address, self._honeypots[0].port, attacker_ip, attacker_port, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS)
+        self._ddos_attack = DdosAttack(self._honeypots[0]._ip_address, self._honeypots[0]._port, attacker_ip, attacker_port, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS)
 
     def _initialize_deadman_switch(self):
         self._deadman_switch = DeadmanSwitch()
 
-    def _import_modules(self):
-        logging.info("Importing modules...")
-
     def run(self):
         self._initialize_honeypots()
         self._initialize_ids()
-        self._import_modules()
-        attacker_ip = self._honeypots[0].ip_address
-        attacker_port = self._honeypots[0].port
-        if self._is_attacker_detected(attacker_ip):
-            self._initialize_deadman_switch()
+        logging.info("Importing modules...")
+        attacker_ip = self._honeypots[0]._ip_address
+        attacker_port = self._honeypots[0]._port 
+        if self._is_attacker_detected(attacker_ip): 
+            self._initialize_deadman_switch() 
             self._deadman_switch.start()  
         else:
             self._initialize_ddos_attack(attacker_ip, attacker_port)
