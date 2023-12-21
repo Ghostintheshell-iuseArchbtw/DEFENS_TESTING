@@ -15,16 +15,16 @@ class DefenseFramework:
         honeypot1 = Honeypot(localhost, 4040)
         honeypot2 = Honeypot(localhost, 8080)
         self._honeypots = [honeypot1, honeypot2]
-
-    def _is_attacker_detected(self, attacker_ip):
-        logging.info(f"Checking if the attacker's IP address {attacker_ip} is detected...")
-        return any(honeypot.has_connection_from(attacker_ip) for honeypot in self._honeypots)
-
+    
     def _initialize_ids(self):
         localhost = "127.0.0.1"
         ids_rule = IDSRule(localhost, "BLOCK")
         self._ids_rules.append(ids_rule)
-
+    
+    def _is_attacker_detected(self, attacker_ip):
+        logging.info(f"Checking if the attacker's IP address {attacker_ip} is detected...")
+        return any(honeypot.has_connection_from(attacker_ip) for honeypot in self._honeypots)
+        
     def _initialize_ddos_attack(self, attacker_ip, attacker_port):
         self._ddos_attack = DdosAttack(self._honeypots[0]._ip_address, self._honeypots[0]._port, attacker_ip, attacker_port, DEFAULT_NUM_THREADS, DEFAULT_NUM_REQUESTS)
 
