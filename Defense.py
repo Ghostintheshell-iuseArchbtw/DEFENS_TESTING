@@ -81,7 +81,7 @@ class DefenseFramework:
         self._initialize_ids()
 
     def _initialize_honeypots(self):
-        localhost = ""
+        localhost = "0.0.0.0"
         honeypot1 = Honeypot(localhost, 4040)
         honeypot2 = Honeypot(localhost, 8080)
         self._honeypots = [honeypot1, honeypot2]
