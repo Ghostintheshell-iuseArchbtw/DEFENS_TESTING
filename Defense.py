@@ -81,7 +81,7 @@ class DefenseFramework:
         self._initialize_ids()
 
     def _initialize_honeypots(self):
-        localhost = "0.0.0.0"
+        localhost = "127.0.0.1"
         honeypot1 = Honeypot(localhost, 4040)
         honeypot2 = Honeypot(localhost, 8080)
         self._honeypots = [honeypot1, honeypot2]
@@ -90,7 +90,7 @@ class DefenseFramework:
         return any(honeypot.has_connection_from(attacker_ip) for honeypot in self._honeypots)
 
     def _initialize_ids(self):
-        localhost = "0.0.0.0"
+        localhost = "127.0.0.1"
         ids_rule = IDSRule(localhost, "BLOCK")
         self._ids_rules.append(ids_rule)
 
